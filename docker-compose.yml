@@ -1,0 +1,22 @@
+services:
+  mysql-exporter:
+    image: prom/mysqld-exporter
+    ports:
+      - "9104:9104"
+    command:
+      - "--config.my-cnf=/cfg/.my.cnf"
+      - "--mysqld.address=localhost:3306"
+    volumes:
+      - /var/run/mysqld/mysqld.sock:/tmp/mysql.sock
+      - ./config/my.cnf:/cfg/.my.cnf
+    expose:
+      - 9104
+    networks:
+      - shared-network
+      - mysql-exporter
+
+networks:
+  shared-network:
+    external: true
+  mysql-exporter:
+    driver: bridge
