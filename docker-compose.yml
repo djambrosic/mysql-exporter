@@ -5,9 +5,8 @@ services:
       - "9104:9104"
     command:
       - "--config.my-cnf=/cfg/.my.cnf"
-      - "--mysqld.address=localhost:3306"
+      - --mysqld.address=${MYSQL_HOST}:${MYSQL_PORT}
     volumes:
-      - /var/run/mysqld/mysqld.sock:/tmp/mysql.sock
       - ./config/my.cnf:/cfg/.my.cnf
     expose:
       - 9104

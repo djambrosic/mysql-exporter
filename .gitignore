@@ -2,3 +2,4 @@
 .vscode
 
 config/my.cnf
+.env
